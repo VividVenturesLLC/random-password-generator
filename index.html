@@ -7,6 +7,7 @@
 
         <link rel="stylesheet" href="https://unpkg.com/carbon-components/css/carbon-components.min.css">
         <script src="https://unpkg.com/carbon-components/scripts/carbon-components.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/VividVenturesLLC/random-password-generator@main/assets/js/random-password-generator.js"></script>
     </head>
     <style>
         body{
@@ -18,76 +19,17 @@
 
 <script>
 
+  console.log( "RandomPasswordGenerator.version", rpg.version )
+  console.log( "---------- Usage: ---------")
+  console.log( "  rpg.generatepass(passwordLength,numberOfSpecialCharacters)" )
+  console.log( "  rpg.generatepass(10,3):", rpg.generatepass(10,3) )
+  console.log( "    OR" )
+  console.log( "  RandomPasswordGenerator.generatepass(10,3):", RandomPasswordGenerator.generatepass(10,3) )
 
-
-
-function shuffle(in_string, shuffles) {
-  /**
-   * Input:
-   *   in_string: string to be shuffled
-   *   shuffles: integer number of shuffles
-   *             defaults to three if 0 or undefined
-   * Output:
-   *   returns a shuffled string
-  */
-  if ( shuffles === 0 || shuffles === undefined ) {
-    shuffles = 3 //default to three for good luck
+  function populateform(enterlength,special_characters_length){
+    document.getElementById("output").innerHTML=
+      rpg.generatepass(enterlength,special_characters_length)
   }
-
-  var merged_array = []
-  var my_array = in_string.split('');
-
-  left_array = my_array.slice( 0 ,my_array.length/2 )
-  right_array = my_array.slice( (my_array.length/2) , my_array.length + 1 )
-
-  while(left_array.length > 0) {
-    merged_array.push( left_array.pop() )
-    merged_array.push( right_array.pop() )
-  }
-  while( right_array.length > 0 ) {
-    merged_array.push( right_array.pop() )
-  }
-
-  merged_array.sort( function(a, b){ return 0.5 - Math.random() } );
-  shuffles -= 1
-  if(shuffles > 0 ) { // keep shuffling :)
-    return shuffle (merged_array.join(''), shuffles )
-  } else { // thats enough shuffling, please stop!
-    return merged_array.join(''); //string
-  }
-}
-
-function generatepass(plength,sc_length){
-  /** Inputs:
-        plength: expected number of characters in the password
-        sc_length: expected number of special characters
-      Output:
-        password string
-  */
-  plength = plength-sc_length // account for added special characters
-  var special_character_list = "$%#!="
-  var keylist="ABCDEFGHIJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz123456789"
-              // keylist excludes lower case l, o, and the number 0
-              //                  upper case O
-  result = ''
-  for (i=0;i<sc_length;i++)
-    result += special_character_list.charAt(
-        Math.floor(Math.random()*special_character_list.length)
-      )
-
-  for (i=0;i<plength;i++)
-    result += keylist.charAt( Math.floor(Math.random()*keylist.length) )
-    //Random password generator- by javascriptkit.com
-    //Visit JavaScript Kit (http://javascriptkit.com) for script
-    //Credit must stay intact for use
-
-  return shuffle( result )
-}
-
-function populateform(enterlength,special_characters_length){
-  document.getElementById("output").innerHTML=
-    generatepass(enterlength,special_characters_length)
-}
 </script>
 
 <div class="bx--grid">
