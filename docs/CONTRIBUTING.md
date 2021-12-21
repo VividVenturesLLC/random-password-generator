@@ -26,10 +26,23 @@
     cd random-password-generator
     ```
 
-4. Make your proposed changes
-    ```bash
-    vim index.html # (or whatever)
-    :wq  # write to file and quit vim
-    ```
+4. Make the proposed changes
 
-5.
+   ```bash
+   vim index.html # (or whatever)
+   :wq  # write to file and quit vim
+   ```
+
+   - test the changes 🔥
+
+5. Commit and push the changes to your repository
+
+   ```bash
+   # make sure the project is on the develop branch
+   git status
+   git add <file-name-that-changed-here>
+   # use https://commitlint.io/
+   #     to help create linted commit message
+   git commit -m "docs(contributing): add push description"
+   git push origin
+   ```
