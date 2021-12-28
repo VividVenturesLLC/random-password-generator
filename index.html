@@ -43,6 +43,16 @@
     var copyText = document.getElementById(div_id);
     navigator.clipboard.writeText(copyText.innerHTML);
   }
+
+  function displayVersion(div_id) {
+    document.getElementById(div_id).innerHTML = "v" + rpg.version
+  }
+
+  window.onload = function afterWebPageLoad() {
+                    displayVersion("rpg_version")
+                  }
+
+
 </script>
 
 <div class="bx--grid">
@@ -98,7 +108,11 @@
 
 
           </div><!-- /column 1 -->
-          <div class="bx--col"><!-- Row 2, Col 2 --><br/><br/><h3>Random Password</h3><br/></div><!-- /column 2 -->
+          <div class="bx--col">
+            <!-- Row 2, Col 2 --><br/><br/><h3>Random Password</h3>
+            <label id="rpg_version" class="bx--label">&nbsp;</label>
+            <br/>
+          </div><!-- /column 2 -->
 
         </div><!--end row 1-->
 
