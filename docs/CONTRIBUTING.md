@@ -52,3 +52,74 @@
 6. Create a pull request from your fork to the upstream project. See creating-a-pull-request-from-a-fork [help](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork).
 
    [![create-a-pull-request.png](./assets/images/create-a-pull-request.png)](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork)
+
+----
+
+## Version management
+
+> Project maintainers will facilitate the change of version numbers according
+> to [semver](https://semver.org/) in the upstream repository.
+> Contributors *must not* implement the following steps.
+
+The `random-password-generator.js` script is the main feature of this
+repository, however the `index.html` demonstration page plays a
+significant role.
+
+Changes to index will be considered minor or patch as there is effectively
+no API.  Since random-password-generator can be used as a module, changes
+could be considered for a major release if the changes affect the API.
+
+1. Once changes have been tested, added and
+committed, the maintainers will decide upon
+   a new version number in semver style to be applied to the tag.
+
+   ```bash
+   cd ~/my_working_directory_name/random-password-generator
+   # list the previous versions for reference
+   git tag --list
+   ```
+
+   Something like vX.Y.Z, where X,Y,Z become numbers
+   as in v.0.0.3
+
+2. [Merge](https://git-scm.com/docs/git-merge) the develop branch into the
+   main branch
+
+   ```bash
+   git checkout main
+
+   # use --no-ff to keep all the commit history
+   git merge --no-ff develop -m "vX.Y.Z merge develop branch into main "
+   ```
+
+3. [Tag](https://git-scm.com/book/en/v2/Git-Basics-Tagging) the commit
+
+   ```bash
+   git tag -a vX.Y.Z -m "vX.Y.Z" \
+                     -m "brief description of changes"\
+                     -m "* extended description of changes"
+   ```
+
+   Make sure to change the version number in both places in
+   the tag command.
+
+   The log of the workflow should look something like:
+   ![log-main-merged-with-develop-and-tagged](./assets/images/log-main-merged-with-develop-and-tagged.png)
+
+   The full message for the tag looks like:
+   ![git-show-tag](./assets/images/git-show-tag.png)
+
+4. [Push](https://git-scm.com/docs/git-push) the changes to the
+   upstream repository
+
+   ```bash
+   # explicity push the tag
+   git push origin vX.Y.Z
+   ```
+
+5. To continue developing, [checkout](https://git-scm.com/docs/git-checkout)
+   the develop branch.
+
+   ```bash
+   git checkout develop
+   ```
