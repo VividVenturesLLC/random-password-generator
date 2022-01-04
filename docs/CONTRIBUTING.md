@@ -69,6 +69,15 @@ Changes to index will be considered minor or patch as there is effectively
 no API.  Since random-password-generator can be used as a module, changes
 could be considered for a major release if the changes affect the API.
 
+Update the following line in file `random-password-generator.js`
+each time there is a version applied to a git tag. The git tag should be
+the same as my.version, so a user can request the version from the script.
+
+```javascript
+- my.version = "0.0.2";
++ my.version = "0.0.3";
+```
+
 1. Once changes have been tested, added and
 committed, the maintainers will decide upon
    a new version number in semver style to be applied to the tag.
