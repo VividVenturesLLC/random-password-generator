@@ -43,4 +43,13 @@ RandomPasswordGenerator.generatepass( 10,3 )
 
 ```
 
-Also in the example app you can check the console log in your developer tools for usage messages.
+Also in the example app you can check the console log in your
+developer tools for usage messages.
+
+----
+
+## Contribute
+
+See [CONTRIBUTING.md](./docs/CONTRIBUTING.md)
+
+
