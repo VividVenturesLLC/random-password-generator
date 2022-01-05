@@ -27,7 +27,7 @@
  var rpg = RandomPasswordGenerator = (function () {
     var my = {};
 
-    my.version = "0.0.2";//this should match the git tag
+    my.version = "0.0.3";//this should match the git tag
 
     // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
     // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =

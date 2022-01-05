@@ -4,16 +4,19 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Random Password Generator</title>
-
+        <link rel="shortcut icon" type="image/x-icon" href="./assets/images/logo/favicon.ico">
         <link rel="stylesheet" href="https://unpkg.com/carbon-components/css/carbon-components.min.css">
         <script src="https://unpkg.com/carbon-components/scripts/carbon-components.min.js"></script>
         <script src="https://cdn.jsdelivr.net/gh/VividVenturesLLC/random-password-generator@main/assets/js/random-password-generator.js"></script>
     </head>
     <style>
         body{
-            background-color:#2c3e50;
+            background-color:#dce9f6;
             font-family:'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
         }
+	.bx--copy-btn{
+	    background-color:#dce9f6;
+	}
     </style>
 <body>
 
@@ -25,11 +28,31 @@
   console.log( "  rpg.generatepass(10,3):", rpg.generatepass(10,3) )
   console.log( "    OR" )
   console.log( "  RandomPasswordGenerator.generatepass(10,3):", RandomPasswordGenerator.generatepass(10,3) )
+  console.log( "---------------------------")
+  console.log( "  To generate yet another password, copy and paste" )
+  console.log( "  the above function into the REPL >> below," )
+  console.log( "  then press the return key." )
 
   function populateform(enterlength,special_characters_length){
     document.getElementById("output").innerHTML=
       rpg.generatepass(enterlength,special_characters_length)
   }
+
+
+  function copyToClipboard(div_id) {
+    var copyText = document.getElementById(div_id);
+    navigator.clipboard.writeText(copyText.innerHTML);
+  }
+
+  function displayVersion(div_id) {
+    document.getElementById(div_id).innerHTML = "v" + rpg.version
+  }
+
+  window.onload = function afterWebPageLoad() {
+                    displayVersion("rpg_version")
+                  }
+
+
 </script>
 
 <div class="bx--grid">
@@ -85,7 +108,11 @@
 
 
           </div><!-- /column 1 -->
-          <div class="bx--col"><!-- Row 2, Col 2 --><br/><br/><h3>Random Password</h3><br/></div><!-- /column 2 -->
+          <div class="bx--col">
+            <!-- Row 2, Col 2 --><br/><br/><h3>Random Password</h3>
+            <label id="rpg_version" class="bx--label">&nbsp;</label>
+            <br/>
+          </div><!-- /column 2 -->
 
         </div><!--end row 1-->
 
@@ -109,10 +136,25 @@
           </div>
           <div class="bx--col">
 
-            <div   id="output"
-                class="bx--tile"
-                style="font-size: 200%" >
-            </div>
+            <textarea id="output"
+		      style="font-size: 200%"
+		      rows="1" cols="20" ></textarea>
+
+            <button data-copy-btn
+		    class="bx--copy-btn"
+		    type="button"
+		    title="Click to copy"
+		    tabindex="0"
+		    onclick="copyToClipboard('output')"
+		    style="display: inline-block">
+
+              <span class="bx--assistive-text bx--copy-btn__feedback">Copied to clipboard!</span>
+              <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--snippet__icon" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M14,5v9H5V5h9m0-1H5A1,1,0,0,0,4,5v9a1,1,0,0,0,1,1h9a1,1,0,0,0,1-1V5a1,1,0,0,0-1-1Z"></path>
+                <path d="M2,9H1V2A1,1,0,0,1,2,1H9V2H2Z"></path>
+              </svg>
+            </button>
+
 
           </div>
 
@@ -179,8 +221,18 @@
 
     </div>
     </div>
-  </div><!-- end row -->
+    <footer>
+        <div style="color:grey;font-size: x-small;">Favicon made by
+          <a href="https://www.freepik.com" title="Freepik" target="_blank"
+             style="color:grey;font-size: x-small;">
+          Freepik</a> from
+          <a href="https://www.flaticon.com/" title="Flaticon" target="_blank"
+             style="color:grey;font-size: x-small;">
+            flaticon.com
+          </a></div>
+    </footer>
 
+  </div><!-- end row -->
 </div><!-- end grid -->
 
 </body></html>
